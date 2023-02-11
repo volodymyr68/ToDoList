@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>todos</title>
+</head>
+<body>
+<h2  th:text="${todos[0].getUser().getUsername()}">name</h2>
+<br><hr/>
+<div th:each="todo : ${todos}">
+     <p th:text="${todo.getTask()}">task</p>
+    <form th:method="DELETE" th:action="@{/authenticated/delete/{id}(id=${todo.getId()})}">
+        <input type="submit" value="Delete"/>
+    </form>
+    <a th:href="@{/authenticated/edit/{id}(id=${todo.getId()})}">edit</a>
+    <hr/>
+</div>
+<a href="/authenticated/new">New task</a>
+<br>
+<a href="/logout">logout</a>
+<br/>
+
+
+
+</body>
+</html>
